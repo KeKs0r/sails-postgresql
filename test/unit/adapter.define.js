@@ -65,7 +65,7 @@ describe('adapter', function() {
           support.Client(function(err, client, close) {
             var query = "SELECT attnotnull FROM pg_attribute WHERE " +
               "attrelid = 'test_define'::regclass AND attname = 'name'";
-            
+
             client.query(query, function(err, result) {
               result.rows[0].attnotnull.should.eql(true);
               close();
@@ -81,7 +81,7 @@ describe('adapter', function() {
 
       after(function(done) {
         support.Client(function(err, client, close) {
-          var query = 'DROP TABLE "user";';
+          var query = 'DROP TABLE "user" CASCADE;';
           client.query(query, function(err) {
 
             // close client
